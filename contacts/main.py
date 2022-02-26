@@ -10,7 +10,7 @@ from .views import Window
 
 
 def main():
-    """RP Contacts main function."""
+    """Contact Book main function."""
     # Create the application
     app = QApplication(sys.argv)
     # Create the main window
