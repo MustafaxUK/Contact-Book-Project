@@ -5,7 +5,7 @@
 import sys
 
 from PyQt5.QtWidgets import QApplication
-
+from .database import createConnection
 from .views import Window
 
 
@@ -13,6 +13,9 @@ def main():
     """Contact Book main function."""
     # Create the application
     app = QApplication(sys.argv)
+    # Connect to the database before creating any windows
+    if not createConnection("contacts.sqlite"):
+        sys.exit(1)
     # Create the main window
     win = Window()
     win.show()
