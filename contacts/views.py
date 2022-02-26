@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """This module provides views to manage the contacts table."""
-
+from .model import ContactsModel
 from PyQt5.QtWidgets import (
     QAbstractItemView,
     QTableView,
@@ -24,17 +24,18 @@ class Window(QMainWindow):
         self.setCentralWidget(self.centralWidget)
         self.layout = QHBoxLayout()
         self.centralWidget.setLayout(self.layout)
-
+        self.contactsModel = ContactsModel()
         self.setupUI()
 
     def setupUI(self):
         """Setup the main window's GUI."""
         # Create the table view widget
         self.table = QTableView()
+        self.table.setModel(self.contactsModel.model)
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.resizeColumnsToContents()
         # Create buttons
-        self.addButton = QPushButton("Add...")
+        self.addButton = QPushButton("Add")
         self.deleteButton = QPushButton("Delete")
         self.clearAllButton = QPushButton("Clear All")
         # Lay out the GUI
